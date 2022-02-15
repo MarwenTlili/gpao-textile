@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ProductionJournalier index{% endblock %}
+
+{% block body %}
+    <h1>ProductionJournalier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateDuJour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for production_journalier in production_journaliers %}
+            <tr>
+                <td>{{ production_journalier.id }}</td>
+                <td>{{ production_journalier.dateDuJour ? production_journalier.dateDuJour|date('d-m-Y') : '' }}</td>
+                <td>
+                    <a href="{{ path('production_journalier_show', {'id': production_journalier.id}) }}">show</a>
+                    <a href="{{ path('production_journalier_edit', {'id': production_journalier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('production_journalier_new') }}">Create new</a>
+{% endblock %}

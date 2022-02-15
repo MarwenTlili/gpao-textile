@@ -1,0 +1,43 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Employe index{% endblock %}
+
+{% block content %}
+    <h1>Employe index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Matricule</th>
+                <th>Categorie</th>
+                <th>DateRecrutement</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for employe in employes %}
+            <tr>
+                <td>{{ employe.id }}</td>
+                <td>{{ employe.nom }}</td>
+                <td>{{ employe.prenom }}</td>
+                <td>{{ employe.matricule }}</td>
+                <td>{{ employe.categorie }}</td>
+                <td>{{ employe.dateRecrutement ? employe.dateRecrutement|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('employe_show', {'id': employe.id}) }}">show</a>
+                    <a href="{{ path('employe_edit', {'id': employe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('employe_new') }}">Create new</a>
+{% endblock %}

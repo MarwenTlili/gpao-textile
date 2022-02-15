@@ -1,0 +1,14 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Edit OrdreFabrication{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        {{ include('ordre_fabrication/_form.html.twig', {'button_label': 'Update'}) }}
+
+        {{ include('ordre_fabrication/_delete_form.html.twig') }}
+
+        {# <a href="{{ path('ordre_fabrication_index') }}">back to list</a> #}
+    </div>
+{% endblock %}

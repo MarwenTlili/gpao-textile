@@ -1,0 +1,44 @@
+{{ form_start(form) }}
+    {{ form_row(form._token) }}
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="col-md-3">
+                {% if not ordre_fabrication.id %}
+                    {{ form_row(form.nouveauArticle) }}
+                {% endif %}
+            </div>
+        
+            {% if app.user.client.privilegier %}
+                <div class="col-md-2">
+                {{ form_row(form.urgent) }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(form.articleNew) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(form.article, { 'attr': {'id': 'article'} }) }}
+        </div>
+
+        {% for ofTaille in form.ordreFabricationTailles %}
+            {{ form_row(ofTaille, { 'label': ofTaille.vars.data.taille.nom }) }}
+        {% endfor %}
+
+        {% if ordre_fabrication.documentTechnique %}
+            <a href="{{ asset('uploads/documentsTechnique/' ~ ordre_fabrication.documentTechnique) }}">
+                voir document (PDF)
+            </a>
+        {% endif %}
+        {{ form_row(form.documentTechnique) }}
+        {{ form_row(form.tempsUnitaire, {'label': 'Temps Unitaire (cmn)'}) }}
+        {{ form_row(form.prixUnitaire) }}
+        {{ form_row(form.montant, { 'label': 'Montant Proposé' }) }}
+        {{ form_row(form.observation) }}
+        
+        <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+    </div>
+{{ form_end(form, {'render_rest': false}) }}

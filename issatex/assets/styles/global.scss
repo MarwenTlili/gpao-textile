@@ -1,0 +1,24 @@
+@import "~bootstrap/scss/bootstrap";
+
+// assets/styles/global.scss
+
+// customize some Bootstrap variables
+$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+
+a{
+    text-decoration: none;
+}
+.dropdown-menu{
+    min-width: 5rem;
+}
+
+.navbar{
+    margin-bottom: 2rem;
+}
+
+#of-notifications-menu{
+    min-width: 10rem !important;
+    right: 0; left: auto !important;
+}

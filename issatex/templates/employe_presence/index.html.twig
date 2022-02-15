@@ -1,0 +1,41 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Presences{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Presences</h1>
+
+        <a href="{{ path('employe_presence_new') }}">Ajout</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>HeureDebut</th>
+                    <th>HeureFin</th>
+                    <th>Date</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for employe_presence in employe_presences %}
+                <tr>
+                    <td>{{ employe_presence.id }}</td>
+                    <td>{{ employe_presence.heureDebut ? employe_presence.heureDebut|date('H:i:s') : '' }}</td>
+                    <td>{{ employe_presence.heureFin ? employe_presence.heureFin|date('H:i:s') : '' }}</td>
+                    <td>{{ employe_presence.getPresence().getDateJour() | date('d-m-Y') }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('employe_presence_show', {'id': employe_presence.id}) }}">show</a>
+                        <a class="btn btn-warning" href="{{ path('employe_presence_edit', {'id': employe_presence.id}) }}">edit</a>
+                        {{ include('employe_presence/_delete_form.html.twig') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

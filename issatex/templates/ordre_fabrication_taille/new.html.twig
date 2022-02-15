@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New OrdreFabricationTaille{% endblock %}
+
+{% block body %}
+    <h1>Create new OrdreFabricationTaille</h1>
+
+    {{ include('ordre_fabrication_taille/_form.html.twig') }}
+
+    <a href="{{ path('ordre_fabrication_taille_index') }}">back to list</a>
+{% endblock %}

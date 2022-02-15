@@ -1,0 +1,24 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Reliquats{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Reliquats</h1>
+        {% for planning in plannings_hebdomadaire %}
+            <div>
+                <strong>id: </strong> {{ planning.id }}
+                <strong>de: </strong> {{ planning.startAt | date('d-m-Y') }}
+                <strong>à: </strong> {{ planning.endAt | date('d-m-Y') }}
+
+                {# <strong>Quantite à produire: </strong> {{ planning.ordreFabrication.qteTotal }} #}
+                {% set somme = 0 %}
+                {% for production_journalier in planning.productionJournalier %}
+                    {% set somme = somme + production_journalier.getQuantitePremiereChoix() + production_journalier.getQuantiteDeuxiemeChoix() %}
+                {% endfor %}
+                <strong>Quantite Produit: </strong> {{somme}}
+                <strong>Quantite reliquants: </strong> {{ planning.ordreFabrication.qteTotal - somme }}
+            </div>
+        {% endfor %} 
+    </div>
+{% endblock %}

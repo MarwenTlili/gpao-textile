@@ -1,0 +1,51 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}OrdreFabrication index{% endblock %}
+
+{% block content %}
+    <h1>Mes Ordres de Fabrication</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>CreatedAt</th>
+                <th>QteTotal</th>
+                <th>DocumentTechnique</th>
+                <th>TempsUnitaire</th>
+                <th>PrixUnitaire</th>
+                <th>Montant</th>
+                <th>Observation</th>
+                <th>Urgent</th>
+                <th>Lancer</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ordre_fabrication in ordre_fabrications %}
+            <tr>
+                <td>{{ ordre_fabrication.id }}</td>
+                <td>{{ ordre_fabrication.createdAt ? ordre_fabrication.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ ordre_fabrication.qteTotal }}</td>
+                <td>{{ ordre_fabrication.documentTechnique }}</td>
+                <td>{{ ordre_fabrication.tempsUnitaire }}</td>
+                <td>{{ ordre_fabrication.prixUnitaire }}</td>
+                <td>{{ ordre_fabrication.montant }}</td>
+                <td>{{ ordre_fabrication.observation }}</td>
+                <td>{{ ordre_fabrication.urgent ? 'Yes' : 'No' }}</td>
+                <td>{{ ordre_fabrication.lancer ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a class="btn btn-success" href="{{ path('ordre_fabrication_show', {'id': ordre_fabrication.id}) }}">show</a>
+                    <a class="btn btn-danger" href="{{ path('ordre_fabrication_edit', {'id': ordre_fabrication.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ordre_fabrication_new') }}">Create new</a>
+{% endblock %}

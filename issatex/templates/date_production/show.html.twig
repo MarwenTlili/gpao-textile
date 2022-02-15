@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DateProduction{% endblock %}
+
+{% block body %}
+    <h1>DateProduction</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ date_production.id }}</td>
+            </tr>
+            <tr>
+                <th>DateDuJour</th>
+                <td>{{ date_production.dateDuJour ? date_production.dateDuJour|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('date_production_index') }}">back to list</a>
+
+    <a href="{{ path('date_production_edit', {'id': date_production.id}) }}">edit</a>
+
+    {{ include('date_production/_delete_form.html.twig') }}
+{% endblock %}

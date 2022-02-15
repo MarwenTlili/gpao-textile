@@ -1,0 +1,56 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}OrdreFabrication{% endblock %}
+
+{% block content %}
+    <h1>OrdreFabrication</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ordre_fabrication.id }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ ordre_fabrication.createdAt ? ordre_fabrication.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>QteTotal</th>
+                <td>{{ ordre_fabrication.qteTotal }}</td>
+            </tr>
+            <tr>
+                <th>DocumentTechnique</th>
+                <td>{{ ordre_fabrication.documentTechnique }}</td>
+            </tr>
+            <tr>
+                <th>TempsUnitaire</th>
+                <td>{{ ordre_fabrication.tempsUnitaire }}</td>
+            </tr>
+            <tr>
+                <th>PrixUnitaire</th>
+                <td>{{ ordre_fabrication.prixUnitaire }}</td>
+            </tr>
+            <tr>
+                <th>Montant</th>
+                <td>{{ ordre_fabrication.montant }}</td>
+            </tr>
+            <tr>
+                <th>Observation</th>
+                <td>{{ ordre_fabrication.observation }}</td>
+            </tr>
+            <tr>
+                <th>Urgent</th>
+                <td>{{ ordre_fabrication.urgent ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>Lancer</th>
+                <td>{{ ordre_fabrication.lancer ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn btn-primary" href="{{ path('ordre_fabrication_edit', {'id': ordre_fabrication.id}) }}">edit</a>
+
+    {{ include('ordre_fabrication/_delete_form.html.twig') }}
+{% endblock %}

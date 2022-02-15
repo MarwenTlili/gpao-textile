@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Ilot{% endblock %}
+
+{% block body %}
+    <h1>Create new Ilot</h1>
+
+    {{ include('ilot/_form.html.twig') }}
+
+    <a href="{{ path('ilot_index') }}">back to list</a>
+{% endblock %}

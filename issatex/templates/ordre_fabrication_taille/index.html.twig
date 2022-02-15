@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrdreFabricationTaille index{% endblock %}
+
+{% block body %}
+    <h1>OrdreFabricationTaille index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Quantite</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ordre_fabrication_taille in ordre_fabrication_tailles %}
+            <tr>
+                <td>{{ ordre_fabrication_taille.id }}</td>
+                <td>{{ ordre_fabrication_taille.quantite }}</td>
+                <td>
+                    <a href="{{ path('ordre_fabrication_taille_show', {'id': ordre_fabrication_taille.id}) }}">show</a>
+                    <a href="{{ path('ordre_fabrication_taille_edit', {'id': ordre_fabrication_taille.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ordre_fabrication_taille_new') }}">Create new</a>
+{% endblock %}

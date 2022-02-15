@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OrdreFabricationTaille{% endblock %}
+
+{% block body %}
+    <h1>OrdreFabricationTaille</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ordre_fabrication_taille.id }}</td>
+            </tr>
+            <tr>
+                <th>Quantite</th>
+                <td>{{ ordre_fabrication_taille.quantite }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ordre_fabrication_taille_index') }}">back to list</a>
+
+    <a href="{{ path('ordre_fabrication_taille_edit', {'id': ordre_fabrication_taille.id}) }}">edit</a>
+
+    {{ include('ordre_fabrication_taille/_delete_form.html.twig') }}
+{% endblock %}

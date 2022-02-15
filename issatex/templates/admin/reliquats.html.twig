@@ -1,0 +1,51 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+{% block page_title 'Reliquats' %}
+
+{% block content %}
+    <section class="main-content">
+        <div class="content-wrapper">
+            <article class="content">
+                <section class="content-header">
+                    <div class="content-header-title"><h1>Reliquants</h1></div>
+                </section>
+                <section class="main">
+                    <table class="table data-grid">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>fromDate</th>
+                                <th>toDate</th>
+                                <th>Quantité Produit</th>
+                                <th>Quantité Reliquant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            {% for planning in plannings_hebdomadaire %}
+                                <td>{{ planning.id }}</td>
+                                <td>{{ planning.startAt | date('d-m-Y') }}</td>
+                                <td>{{ planning.endAt | date('d-m-Y') }}</td>
+                                {% set somme = 0 %}
+                                {% for production_journalier in planning.productionJournalier %}
+                                    {% set somme = somme + production_journalier.getQuantitePremiereChoix() + production_journalier.getQuantiteDeuxiemeChoix() %}
+                                {% endfor %}
+
+                                <td>{{somme}}</td>
+                                <td>{{ planning.ordreFabrication.qteTotal - somme }}</td>
+                            {% endfor %}
+                                
+                            </tr>
+                        </tbody>
+                        <tfoot></tfoot>
+                    </table>
+                    <div class="count">
+                        {{ getTotalItemCount }}
+                    </div>
+                    <div class="navigation">
+                        {{ knp_pagination_render(plannings_hebdomadaire, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig') }}
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,119 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+
+        <div class="ordres">
+            <div class="title">
+                <h5>Vos Ordres de Fabrication</h5>
+            </div>
+            {% if ordres %}
+                {% for ordre_fabrication in ordres %}
+                    <div id="of_{{ordre_fabrication.id}}" class="ordre" >
+                        <div class="row">
+                            <div class="col">
+                                <div class="createdAt ">
+                                    <strong>Date:</strong>
+                                    {{ ordre_fabrication.createdAt ? ordre_fabrication.createdAt|date('d-m-Y') : '' }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="article ">
+                                    <strong> Article:</strong> 
+                                    {{ ordre_fabrication.Article.designation }}
+                                </div>
+                            </div>
+                                
+                            <div class="col">
+                                <div class="quantiteTotal">
+                                    <strong>Qte Total:</strong>
+                                    {{ ordre_fabrication.qteTotal }}
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="tempsUnitaire">
+                                    <strong>Quantité totale:</strong> 
+                                    {{ ordre_fabrication.tempsUnitaire }}
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="prixUnitaire">
+                                    <strong>Prix Unitaire:</strong> 
+                                    {{ ordre_fabrication.prixUnitaire }}
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="montant">
+                                    <strong>Montant:</strong> 
+                                    {{ ordre_fabrication.montant | format_currency('TND', {fraction_digit: 3})}}
+                                </div>
+                            </div>
+                        </div>
+
+                        {# Document Technique: {{ ordre_fabrication.documentTechnique }} #}
+
+
+                        {# <div class="observation">
+                            Description: {{ ordre_fabrication.observation }}
+                        </div> #}
+                        
+                        <div class="row">
+                            <div class="col">
+                                <div class="urgent">
+                                    <strong>Urgent:</strong>
+                                    {{ ordre_fabrication.urgent ? 'Yes' : 'No' }}
+                                </div>
+                            </div>
+                            
+                            <div class="col">
+                                <div class="lancer">
+                                    <strong>Lancer:</strong>
+                                    {{ ordre_fabrication.lancer ? 'Yes' : 'No' }}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="lancer">
+                                    <strong>Refuser:</strong>
+                                    {{ ordre_fabrication.refuser ? 'Yes' : 'No' }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a class="btn btn-success" href="{{ path('ordre_fabrication_show', {'id': ordre_fabrication.id}) }}">
+                            <i class="bi bi-book"></i>
+                        </a>
+
+
+                        {% if ordre_fabrication.lancer %} 
+                            <div id="of_{{ordre_fabrication.id}}_update_delete_btns" style="display: none">
+                        {% else %}
+                            <div id="of_{{ordre_fabrication.id}}_update_delete_btns" class="d-inline">
+                        {% endif %}
+                                <a class="btn btn-warning lancer-toggle" href="{{ path('ordre_fabrication_edit', {'id': ordre_fabrication.id}) }}">
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                {{ include('ordre_fabrication/_delete_form.html.twig') }}
+
+                            </div>
+                        
+                    </div>
+
+                    <hr>
+                {% endfor %}
+            {% endif %}
+
+            <div class="navigation">
+                {{ knp_pagination_render(ordres, '@KnpPaginator/Pagination/twitter_bootstrap_v4_pagination.html.twig')}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

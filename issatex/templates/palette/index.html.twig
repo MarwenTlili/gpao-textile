@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Palette index{% endblock %}
+
+{% block body %}
+    <h1>Palette index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>QteTotaleArticles</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for palette in palettes %}
+            <tr>
+                <td>{{ palette.id }}</td>
+                <td>{{ palette.qteTotaleArticles }}</td>
+                <td>
+                    <a href="{{ path('palette_show', {'id': palette.id}) }}">show</a>
+                    <a href="{{ path('palette_edit', {'id': palette.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('palette_new') }}">Create new</a>
+{% endblock %}

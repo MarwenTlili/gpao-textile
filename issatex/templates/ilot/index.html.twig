@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ilot index{% endblock %}
+
+{% block body %}
+    <h1>Ilot index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for ilot in ilots %}
+            <tr>
+                <td>{{ ilot.id }}</td>
+                <td>{{ ilot.nom }}</td>
+               
+                <td>
+                    <a href="{{ path('ilot_show', {'id': ilot.id}) }}">show</a>
+                    <a href="{{ path('ilot_edit', {'id': ilot.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('ilot_new') }}">Create new</a>
+{% endblock %}

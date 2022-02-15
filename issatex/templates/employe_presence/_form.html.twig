@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+{{ form_widget(form._token) }}
+    {# {{ form_widget(form) }} #}
+    {{ form_row(form.employe) }}
+    {{ form_row(form.presence) }}
+    {{ form_row(form.heureDebut) }}
+    {{ form_row(form.heureFin) }}
+
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
+{{ form_end(form, {'render_rest': false}) }}

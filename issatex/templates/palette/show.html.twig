@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Palette{% endblock %}
+
+{% block body %}
+    <h1>Palette</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ palette.id }}</td>
+            </tr>
+            <tr>
+                <th>QteTotaleArticles</th>
+                <td>{{ palette.qteTotaleArticles }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('palette_index') }}">back to list</a>
+
+    <a href="{{ path('palette_edit', {'id': palette.id}) }}">edit</a>
+
+    {{ include('palette/_delete_form.html.twig') }}
+{% endblock %}

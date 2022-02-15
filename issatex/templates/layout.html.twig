@@ -1,0 +1,173 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% block navbar %}
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <div class="container-fluid">
+                {% if is_granted('ROLE_CLIENT') %}
+                    <a class="navbar-brand" href="{{ path('client_index') }}">
+                        <i class="bi bi-building" aria-hidden="true"></i>
+                        Issatex
+                    </a>
+                {% elseif is_granted('ROLE_SECRETAIRE') %}
+                    <a class="navbar-brand" href="{{ path('planning_hebdomadaire_index') }}">Issatex</a>
+                {% else %}
+                    <a class="navbar-brand" href="{{ path('app_logout') }}">Issatex</a>
+                {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-lg-0">
+                        {% if is_granted('ROLE_CLIENT') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('client_index') }}">Ordres de fabrication</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('ordre_fabrication_new') }}">Nouveau Ordre de fabrication</a>
+                            </li>
+                        {% endif %}
+
+
+                        {% if is_granted('ROLE_SECRETAIRE') %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('planning_hebdomadaire_index') }}">Production</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Employes
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        {# <li><hr class="dropdown-divider"></li> #}
+                                        <li><a class="dropdown-item" href="{{ path('employe_presence_index') }}">Présence</a></li>
+                                        <li><a class="dropdown-item" href="#">Abscences</a></li>
+                                    </ul>
+                                </li>
+                                <a class="nav-link" href="{{ path('planning_hebdomadaire_reliquats') }}">Etat des Reliquats</a>
+                            </li>
+                        {% endif %}
+
+
+                        {# <li class="nav-item">
+                            <a class="nav-link" href="{{ path('publish') }}">publish</a>
+                        </li> #}
+                    </ul>
+                   
+                    {% if app.user %}
+                        <div class="d-flex">
+                            <ul class="navbar-nav me-auto mb-lg-0">
+                                {% if is_granted('ROLE_CLIENT') %}
+                                    <div class="nav-item btn-group ">
+                                        <button class="btn dropdown-toggle" type="button" id="notifMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-danger" hidden="hidden">
+                                                
+                                            </span>
+                                            <i class="bi bi-bell-fill" aria-hidden="true"></i>
+                                        </button>
+                                        <ul id="of-notifications-menu" class="dropdown-menu" aria-labelledby="notifMenuButton">
+                                            <li id="no-notif" class="nav-item"><span class="dropdown-item d-flex justify-content-center" >no notifications</span></li>
+                                        </ul>
+                                    </div>
+                                {% endif %}
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="bi bi-person-fill"></i> {{app.user.getUsername()}}
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                        {# {% if is_granted('ROLE_CLIENT') %}
+                                            {% if app.user.client %}
+                                                <li><a class="dropdown-item" href="{{ path('client_edit', {'id': app.user.client.getId()}) }}">Profile</a></li>
+                                            {% else %}
+                                                <li><a class="dropdown-item" href="{{ path('client_new') }}">Profile</a></li>
+                                            {% endif %}
+                                        {% endif %} #}
+
+                                        {# <li><hr class="dropdown-divider"></li> #}
+                                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        <!-- OrdreFabrication notification Modal -->
+        <div class="modal fade" id="OfNotificationModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="of">
+                    <strong>Date Creation: </strong><label class="createdAt"></label>
+                    <strong>Date Lancement: </strong><label class="date_lancement"></label>
+                    <strong>Client: </strong><label class="client"></label>
+                    <strong>Article: </strong><label class="article"></label>
+                    <strong>Quantite Total: </strong><label class="qteTotal"></label>
+                    <strong>Montant: </strong><label class="montant"></label>
+                    <strong>Urgent: </strong><label class="urgent"></label>
+                    <strong>Lancer: </strong><label class="lancer"></label>
+                    <div class="ordreFabricationTailles">
+                        <h5>Quantites</h5>
+                        <strong>L: </strong><label class="L">0</label>
+                        <strong>M: </strong><label class="M">0</label>
+                        <strong>XL: </strong><label class="XL">0</label>
+                    </div>
+                </div>
+            </div>
+            {# <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> #}
+            </div>
+        </div>
+        </div>
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('notification') %}
+            <div id="notification" class="alert alert-success">
+                {{ message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+
+        {% if is_granted('ROLE_CLIENT') %}
+            <div class="js-user" data-user="{{ app.user.getId() }}"></div>
+        {% endif %}
+
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+        {# <h5>footer</h5> #}
+    {% endblock %}
+
+{% endblock %}
+
+
+

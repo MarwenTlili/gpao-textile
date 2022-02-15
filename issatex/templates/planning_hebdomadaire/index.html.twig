@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}PlanningHebdomadaire index{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Plannings Hebdomadaire</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>StartAt</th>
+                    <th>EndAt</th>
+                    <th>Ilot</th>
+                    <th>Ordre de Fabrication</th>
+                    <th>Client</th>
+                    <th>actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for planning_hebdomadaire in planning_hebdomadaires %}
+                <tr>
+                    <td>{{ planning_hebdomadaire.id }}</td>
+                    <td>{{ planning_hebdomadaire.startAt ? planning_hebdomadaire.startAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ planning_hebdomadaire.endAt ? planning_hebdomadaire.endAt|date('Y-m-d') : '' }}</td>
+                    <td>{{ planning_hebdomadaire.ilot }}</td>
+                    <td>{{ planning_hebdomadaire.ordreFabrication }}</td>
+                    <td>{{ planning_hebdomadaire.ordreFabrication.client }}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{{ path('planning_hebdomadaire_show', {'id': planning_hebdomadaire.id}) }}" title="afficher productions" >
+                            <i class="bi bi-book"></i>
+                        </a>
+                        <a class="btn btn-warning" href="{{ path('production_journalier_new', {'planningHebdomadaire': planning_hebdomadaire.id}) }}" title="ajout production" >
+                            <i class="bi bi-plus-square"></i>
+                        </a>
+                        {# <a href="{{ path('planning_hebdomadaire_edit', {'id': planning_hebdomadaire.id}) }}">edit</a> #}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {# <a href="{{ path('planning_hebdomadaire_new') }}">Create new</a> #}
+    </div>
+{% endblock %}

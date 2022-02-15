@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ilot{% endblock %}
+
+{% block body %}
+    <h1>Ilot</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ilot.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ ilot.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ilot_index') }}">back to list</a>
+
+    <a href="{{ path('ilot_edit', {'id': ilot.id}) }}">edit</a>
+
+    {{ include('ilot/_delete_form.html.twig') }}
+{% endblock %}
