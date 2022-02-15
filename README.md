@@ -23,8 +23,8 @@ nodejs, yarn/npm
 docker
 
 ## Setup:
-git clone https://github.com/MarwenTlili/issatex_docker.git
-cd issatex_docker/issatex
+ - git clone https://github.com/MarwenTlili/issatex_docker.git
+ - cd issatex_docker/issatex
 
 yarn install
 composer install
@@ -37,6 +37,7 @@ symfony console doctrine:fixtures:load
 
 docker-compose up -d
 
+**for test**
 client:
 	email: client1@gmail.com
 	pw: client1
