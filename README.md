@@ -27,19 +27,19 @@ docker
  - cd issatex_docker/issatex
 
 **install yarn dependencies**
- - yarn install
+    yarn install
 **install composer dependencies**
- - composer install
+    composer install
 **create database**
- - symfony console doctrine:database:create
+    symfony console doctrine:database:create
 **make a new migration files**
- - symfony console make:migration
+    symfony console make:migration
 **execute migrations**
- - symfony console doctrine:migrations:migrate
+    symfony console doctrine:migrations:migrate
 **load fixtures for test**
- - symfony console doctrine:fixtures:load
+    symfony console doctrine:fixtures:load
 **run docker containers**
- - docker-compose up -d
+    docker-compose up -d
 
 **for test you can use those logins**
  - client:
