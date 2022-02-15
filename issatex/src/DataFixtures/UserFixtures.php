@@ -29,7 +29,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_GERANT'])
             ->setPlainPassword('gerant')
             ->setIsVerified(true)
-            ->setIsEnabled(true)
+            // ->setIsEnabled(true)
             ->setPassword($this->hashedPassword->hashPassword($user1_gerant, $user1_gerant->getPlainPassword()))
         ;
 
@@ -39,7 +39,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_CLIENT'])
             ->setPlainPassword('client1')
             ->setIsVerified(true)
-            ->setIsEnabled(true)
+            // ->setIsEnabled(true)
             ->setPassword($this->hashedPassword->hashPassword($user2_client, $user2_client->getPlainPassword()))
         ;
 
@@ -49,7 +49,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_CLIENT'])
             ->setPlainPassword('client2')
             ->setIsVerified(false)
-            ->setIsEnabled(false)
+            // ->setIsEnabled(false)
             ->setPassword($this->hashedPassword->hashPassword($user3_client, $user3_client->getPlainPassword()))
         ;
 
@@ -59,7 +59,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_CLIENT'])
             ->setPlainPassword('client3')
             ->setIsVerified(false)
-            ->setIsEnabled(false)
+            // ->setIsEnabled(false)
             ->setPassword($this->hashedPassword->hashPassword($user4_client, $user4_client->getPlainPassword()))
         ;
 
@@ -69,7 +69,7 @@ class UserFixtures extends Fixture
             ->setRoles(['ROLE_SECRETAIRE'])
             ->setPlainPassword('secretaire')
             ->setIsVerified(false)
-            ->setIsEnabled(false)
+            // ->setIsEnabled(false)
             ->setPassword($this->hashedPassword->hashPassword($user5_secretaire, $user5_secretaire->getPlainPassword()))
         ;
 

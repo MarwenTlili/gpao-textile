@@ -24,7 +24,7 @@ services:
           - 9001:8088
         environment: 
             APP_ENV: dev
-            DATABASE_URL: mysql://root:secret@mysql:3306/issatex
+            DATABASE_URL: mysql://root:secret@mysql:3306/${MYSQL_DATABASE}
             MERCURE_URL: http://mercure:8000/.well-known/mercure
             # MERCURE_PUBLIC_URL: http://${SERVER_NAME:-localhost}/.well-known/mercure
             MERCURE_JWT_SECRET: ${MERCURE_JWT_SECRET:-!ChangeMe!}
