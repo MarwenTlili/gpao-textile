@@ -171,9 +171,7 @@ class OrdreFabricationController extends AbstractController
             $entityManager->persist($article);
             $entityManager->persist($ordreFabrication);
 
-            dump($ordreFabrication);
-            dd('');
-            // $entityManager->flush();
+            $entityManager->flush();
 
             $this->addFlash(
                'success',

@@ -41,7 +41,7 @@ class OrdreFabricationCrudController extends AbstractCrudController
                 ->setCurrency('TND')->setNumDecimals(3)->setStoredAsCents(false),
             BooleanField::new('urgent'),
             // BooleanField::new('lancer')->setDisabled(),
-            BooleanField::new('lancer')->setFormTypeOption('disabled','disabled'),
+            BooleanField::new('lancer')->setFormTypeOption('enabled','disabled'),
             BooleanField::new('refuser'),
             // AssociationField::new('Ilot'),
             TextField::new('observation')->hideOnIndex(),
