@@ -1,11 +1,11 @@
 # issatex
-*Mini Projet pour Atelier Conception - Scrum*
-Organisation: ISET Sousse, Master Pro GLDRA3 A2
+
+Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 
 ## Technologies utilisé:
-  - BackEnd: Symfony 5.3
-  - Containerization: Docker/Docker-Compose
-  - FrontEnd: Bootstrap 5.1
+- BackEnd: Symfony 5.4
+- Containerization: Docker/Docker-Compose
+- FrontEnd: Bootstrap 5
 
 ## Fonctionnalités:
 - gestion des ilots
@@ -17,39 +17,56 @@ Organisation: ISET Sousse, Master Pro GLDRA3 A2
 - système de notification envoyer au client/donneur d’ordre (si OF change d’etat)
 
 ## Requirements:
-php 7.4
-composer
-nodejs, yarn/npm
-docker
+
+- php 8.3 
+- composer 
+- nodejs >= 20
+- yarn
+- Docker
 
 ## Setup:
- - git clone https://github.com/MarwenTlili/issatex_docker.git
- - cd issatex_docker/issatex
+```bash
+> git clone https://github.com/MarwenTlili/issatex_docker.git
+> cd issatex_docker
+```
 
-**install yarn dependencies**  
-    yarn install  
-**install composer dependencies**  
-    composer install  
-**create database**  
-    symfony console doctrine:database:create  
-**make a new migration files**  
-    symfony console make:migration  
-**execute migrations**  
-    symfony console doctrine:migrations:migrate  
-**load fixtures for test**  
-    symfony console doctrine:fixtures:load  
-**run docker containers**  
-    docker-compose up -d  
+```bash
+# install yarn dependencies
+yarn install
 
-**for test you can use those logins**  
- - client:  
-	email: client1@gmail.com
-	pw: client1
+# install composer dependencies
+composer install
 
- - gerant:  
-	email: gerant@gmail.com
-	pw: gerant
+# create database
+symfony console doctrine:database:create
 
- - secretaire:  
-	email: secretaire@gmail.com
-	pw: secretaire
+# make a new migration files
+symfony console make:migration
+
+# execute migrations
+symfony console doctrine:migrations:migrate
+
+# load fixtures for test
+symfony console doctrine:fixtures:load
+
+# run docker containers
+docker compose up -d
+```
+
+for test you can use those logins  
+client:
+email: client1@gmail.com pw: client1
+
+gerant:
+email: gerant@gmail.com pw: gerant
+
+secretaire:
+email: secretaire@gmail.com pw: secretaire
+
+```bash
+# mysql root user 
+# see mysql logs to check your own generated root password
+> docker logs issatex_docker-database -f
+> mysql -u root -p 
+Enter password: r3TTtpIZ3MH2iNhQcRp+eJcAkXIzxtRJ
+```

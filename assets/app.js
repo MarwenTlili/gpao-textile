@@ -39,7 +39,7 @@ $(function() {
      * callback data from mercure
      */
     if (userId) {
-        const url = new URL('http://localhost:8000/.well-known/mercure');
+        const url = new URL('https://localhost/.well-known/mercure');
 
         let of_lancer = 'http://issatex.com/of/lancer/'+userId;
         let of_larguer = 'http://issatex.com/of/larguer/'+userId;
