@@ -4,18 +4,27 @@ Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 
 ## Technologies utilisé:
 - BackEnd: Symfony 5.4
-- Containerization: Docker/Docker-Compose
+- Containerization: Docker Compose
 - FrontEnd: Bootstrap 5
 
 ## Fonctionnalités:
-- gestion des ilots
-- gestion des Ordres de Fabrication habituelle/urgent
-- planification des Ordres de Fabrication
-- traitement des Quantité/Qualité journalièrement des articles
-- calcul du rendement journalier/hebdomadaire/mensuel/annuel de chaque ilot
-- gestion du stock des articles(tisu, fourniture, produit finis)
-- système de notification envoyer au client/donneur d’ordre (si OF change d’etat)
-
+### Espace Admin
+- Création de données de production (ouvriers, machines, îlots ...)
+- Lister les OF, validation ou refus
+- Validation des inscription clients
+- Changement catégorie du client
+- Recherche OFs non achevés
+- Affectation des OFs (nouveaur/non achevés) sur des îlots
+### Espace Client
+- Inscription
+- Création des OF (ordinaire/urgent) et leurs Mise à jour
+- Lister ces OF
+- Recevoir les notification concernant ces d’ordres (si OF change d’etat)
+### Espace Secrétaire
+- Saisie quotidienne des productions (Quantité/Qualité) par îlot
+- Etat journaliers des reliquants des OF (total Qte produites et reliquats)
+- Saisie la présences des employés
+- Etats journaliers des abscences
 ## Requirements:
 
 - php 8.3 
