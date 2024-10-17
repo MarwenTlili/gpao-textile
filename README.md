@@ -11,14 +11,13 @@ Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 ### Espace Admin
 - Création de données de production (ouvriers, machines, îlots ...)
 - Lister les OF, validation ou refus
-- Validation des inscription clients
-- Changement catégorie du client
+- Validation et changement du catégorie des clients
 - Recherche OFs non achevés
-- Affectation des OFs (nouveaur/non achevés) sur des îlots
+- Affectation des OFs (nouveau/non achevés) sur des îlots
 ### Espace Client
 - Inscription
-- Création des OF (ordinaire/urgent) et leurs Mise à jour
-- Lister ces OF
+- Création des ordres de fabrication (ordinaire/urgent) et leurs Mise à jour
+- Lister ces ordres de fabrication (avec état en temps réel)
 - Recevoir les notification concernant ces d’ordres (si OF change d’etat)
 ### Espace Secrétaire
 - Saisie quotidienne des productions (Quantité/Qualité) par îlot
