@@ -1,4 +1,4 @@
-# issatex
+# GPAO Textile
 
 Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 
@@ -9,11 +9,11 @@ Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 
 ## Fonctionnalités:
 ### Espace Admin
-- Création de données de production (ouvriers, machines, îlots ...)
-- Lister les OF, validation ou refus
+- Création de données de production (clients, ouvriers, machines, îlots ...)
+- Lister les ordres de fabrication, validation ou refus
 - Validation et changement du catégorie des clients
 - Recherche OFs non achevés
-- Affectation des OFs (nouveau/non achevés) sur des îlots
+- Affectation des ordres de fabrication (nouveau/non achevés) sur des îlots
 ### Espace Client
 - Inscription
 - Création des ordres de fabrication (ordinaire/urgent) et leurs Mise à jour
@@ -34,8 +34,8 @@ Mini Projet pour Atelier Conception - Scrum Organisation: Master Pro
 
 ## Setup:
 ```bash
-> git clone https://github.com/MarwenTlili/issatex_docker.git
-> cd issatex_docker
+> git clone https://github.com/MarwenTlili/gpao-textile.git
+> cd gpao-textile
 ```
 
 ```bash
@@ -45,7 +45,12 @@ yarn install
 # install composer dependencies
 composer install
 
-# create database
+# run docker containers
+docker compose up -d
+
+docker compose exec -it php bash
+
+# create database, if not already created
 symfony console doctrine:database:create
 
 # make a new migration files
@@ -56,9 +61,6 @@ symfony console doctrine:migrations:migrate
 
 # load fixtures for test
 symfony console doctrine:fixtures:load
-
-# run docker containers
-docker compose up -d
 ```
 
 for test you can use those logins  
@@ -74,7 +76,7 @@ email: secretaire@gmail.com pw: secretaire
 ```bash
 # mysql root user 
 # see mysql logs to check your own generated root password
-> docker logs issatex_docker-database -f
+> docker logs gpao_textile-database -f
 > mysql -u root -p 
 Enter password: r3TTtpIZ3MH2iNhQcRp+eJcAkXIzxtRJ
 ```
